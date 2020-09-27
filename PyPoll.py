@@ -33,14 +33,26 @@ vote_percentage.append(canidate_votes[canidate_options[2]] / total_votes * 100)
 # Winning Candidate and Winning Count Tracker
 winner_index = np.int(np.where(vote_percentage == np.amax(vote_percentage))[0])
 winning_candidate = canidate_options[winner_index]
-winning_count = canidate_votes[canidate_options[winner_index]]
-winning_percentage = "{:.1f}".format(vote_percentage[winner_index])
+winning_count = '{:,}'.format(canidate_votes[canidate_options[winner_index]])
+winning_percentage = '{:.1f}'.format(vote_percentage[winner_index])
 
 # Printing the results
 for i in range(0, 3):
-    print(canidate_options[i] + ": " + str("{:.1f}".format(vote_percentage[i])) + "% (" +
-          str(canidate_votes[canidate_options[i]]) + ")")
+    print(canidate_options[i] + ': ' + str('{:.1f}'.format(vote_percentage[i])) + '% (' +
+          str('{:,}'.format(canidate_votes[canidate_options[i]])) + ')')
 
 print('\n-------------------------\nWinner: ' + winning_candidate + '\nWinning Vote Count: '
       + str(winning_count) + '\nWinning Percentage: ' + str(winning_percentage) +
       '%\n-------------------------\n')
+
+# Recording the results
+f = open('election_analysis.txt', 'w')
+f.write('Election Results\n-------------------------\nTotal Votes: ' + str('{:,}'.format(total_votes)) +
+        '\n-------------------------\n')
+for i in range(0, 3):
+    f.write(canidate_options[i] + ': ' + str('{:.1f}'.format(vote_percentage[i])) + '% ('
+            + str('{:,}'.format(canidate_votes[canidate_options[i]])) + ')\n')
+
+f.write('-------------------------\nWinner: ' + winning_candidate + '\nWinning Vote Count: ' + str(winning_count) +
+        '\nWinning Percentage: ' + str(winning_percentage) + '%\n-------------------------\n')
+f.close()
