@@ -65,7 +65,20 @@ After all that code the program was able to come to the conclusion that Jefferso
 
 - Which county had the largest number of votes?
 
-Denver county had the largest number of votes.
+In order to determine which county had the highest amount of votes several NumPy functions were utilized. These found 
+the index of the largest value in the county_percentage array. With that index the program was able to find the name, 
+amount of votes, and percentage of the vote of the county that had the largest amount of votes. This is the code:
+```python
+highest_county_index = np.int(np.where(county_percentage == np.amax(county_percentage))[0])
+highest_county_name = county_options[highest_county_index]
+highest_county_count = '{:,}'.format(county_votes[county_options[highest_county_index]])
+highest_county_percentage = '{:.1f}'.format(county_percentage[highest_county_index])
+```
+What was found was that Denver County had the most votes with 306,055 of them. That was 82.8% of the vote.
 
 - Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
+
+The process of acquiring the amount of votes and the percentage of the vote per candidate was very similar to the 
+process explained above 
+
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
