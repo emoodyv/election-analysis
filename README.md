@@ -20,7 +20,37 @@ total_votes = float(len(df.index))
 
 - Provide a breakdown of the number of votes and the percentage of total votes for each county in the precinct.
 
-In order to obtain county specific results the program first had to sort through the data to find the 
+In order to obtain county specific results the program first had to sort through the data to find the counties where the
+votes came from. Since the county data was in the second column of the raw data, a loop was created to go through all of
+the data in the second column. If a new county was discovered it was added to a list. This is the code that was tasked 
+to that:
+```python
+county_options = []
+for i in range(0, len(df.index)):
+    if df[headers[1]][i] not in county_options:
+        county_options.append(df[headers[1]][i])
+```
+What was returned from that loop was the following array:
+```python
+['Jefferson', 'Denver', 'Arapahoe']
+```
+From there a dictionary was created to store the votes for each county. Then the program looped through every row in the
+data associated each vote to a county:
+```python
+county_votes = {county_options[0]: 0, county_options[1]: 0, county_options[2]: 0}
+for i in range(0, len(df.index)):
+    if df[headers[1]][i] == county_options[0]:
+        county_votes[county_options[0]] += 1
+    elif df[headers[1]][i] == county_options[1]:
+        county_votes[county_options[1]] += 1
+    elif df[headers[1]][i] == county_options[2]:
+        county_votes[county_options[2]] += 1
+```
+The resulting dictionary was:
+```python
+{'Jefferson': 38855, 'Denver': 306055, 'Arapahoe': 24801}
+```
+After that 
 
 - Which county had the largest number of votes?
 - Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
