@@ -13,12 +13,15 @@ Subsequently, a python program was necessary in order to count through every vot
 
 For this first step in the analysis the python code needed to count every vote, or every row except the header row, in 
 the csv file. So, to complete this task the index function of the panda dataframe was used. Note that is saved a float 
-for computational purposes later in the code.
+for computational purposes later in the code. Here is what that code looked like:
 ```python
 total_votes = float(len(df.index))
 ```
 
 - Provide a breakdown of the number of votes and the percentage of total votes for each county in the precinct.
+
+In order to obtain county specific results the program first had to sort through the data to find the 
+
 - Which county had the largest number of votes?
 - Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
