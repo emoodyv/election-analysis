@@ -12,7 +12,7 @@ Subsequently, a python program was necessary in order to count through every vot
 - How many votes were cast in this congressional election?
 
 For this first step in the analysis the python code needed to count every vote, or every row except the header row, in 
-the csv file. So, to complete this task the index function of the panda dataframe was used. Note that is saved a float 
+the csv file. So, to complete this task the index function of the pandas dataframe was used. Note that is saved a float 
 for computational purposes later in the code. Here is what that code looked like:
 ```python
 total_votes = float(len(df.index))
@@ -79,6 +79,44 @@ What was found was that Denver County had the most votes with 306,055 of them. T
 - Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
 
 The process of acquiring the amount of votes and the percentage of the vote per candidate was very similar to the 
-process explained above 
+process explained above for the county-based analysis. ASs such the first step was to find the candidate names in the 
+third column of the data. Is was the code and resultant array for that step
+```python
+canidate_options = []
+for i in range(0, len(df.index)):
+    if df[headers[2]][i] not in canidate_options:
+        canidate_options.append(df[headers[2]][i])
+```
+```python
+['Charles Casper Stockham', 'Diana DeGette', 'Raymon Anthony Doane']
+```
+Next, the amount of votes per candidate was gather using the same method as the amount of votes per county:
+```python
+canidate_votes = {canidate_options[0]: 0, canidate_options[1]: 0, canidate_options[2]: 0}
+for i in range(0, len(df.index)):
+    if df[headers[2]][i] == canidate_options[0]:
+        canidate_votes[canidate_options[0]] += 1
+    elif df[headers[2]][i] == canidate_options[1]:
+        canidate_votes[canidate_options[1]] += 1
+    elif df[headers[2]][i] == canidate_options[2]:
+        canidate_votes[canidate_options[2]] += 1
+```
+```python
+{'Charles Casper Stockham': 85213, 'Diana DeGette': 272892, 'Raymon Anthony Doane': 11606}
+```
+Finally the percentage of the vote for each candidate was once again derived from the county method:
+```python
+vote_percentage = [canidate_votes[canidate_options[0]] / total_votes * 100,
+                   canidate_votes[canidate_options[1]] / total_votes * 100,
+                   canidate_votes[canidate_options[2]] / total_votes * 100]
+```
+```python
+[23.04854332167558, 73.81224794501652, 3.1392087333079077]
+```
+The result of all that code was that Charles Casper Stockham got 85,213 votes (23%), Diana DeGette got 272,892 votes
+(73.8%), and Raymon Anthony Doane got 11,606 votes (3.1%). Too bad Raymon doesn't spell his name with a d, because
+Every Loves Raymond.
 
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
+
+The code used to 
