@@ -50,8 +50,22 @@ The resulting dictionary was:
 ```python
 {'Jefferson': 38855, 'Denver': 306055, 'Arapahoe': 24801}
 ```
-After that 
+After that the percentage of the vote that each county accounted for was simply calculated by dividing the votes that 
+where in each county by the total. Here is the code and resulting array:
+```python
+county_percentage = [county_votes[county_options[0]] / total_votes * 100,
+                     county_votes[county_options[1]] / total_votes * 100,
+                     county_votes[county_options[2]] / total_votes * 100]
+```
+```python
+[10.509560169970598, 82.78222719908253, 6.708212630946875]
+```
+After all that code the program was able to come to the conclusion that Jefferson County received 10.5% of the vote with 
+38,855 votes, Denver County had 306,055 votes (82.8%), and Arapahoe County had 24,801 votes (6.7%).
 
 - Which county had the largest number of votes?
+
+Denver county had the largest number of votes.
+
 - Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
