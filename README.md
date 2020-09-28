@@ -119,4 +119,21 @@ Every Loves Raymond.
 
 - Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
 
-The code used to 
+The code used to determine the winner of the election was the same in functionality as the code used to find the county 
+with the most votes:
+```python
+winner_index = np.int(np.where(vote_percentage == np.amax(vote_percentage))[0])
+winning_candidate = canidate_options[winner_index]
+winning_count = '{:,}'.format(canidate_votes[canidate_options[winner_index]])
+winning_percentage = '{:.1f}'.format(vote_percentage[winner_index])
+```
+Therefore, our election winner was Diana DeGette with 272,892 votes. That is 73.8% of the vote
+## Election-Audit Summary
+The python program that was developed for this project is highly versatile and used both pandas and NumPy to quickly and
+efficiently analyze the results of the election. It was designed to be dynamic and to be able to analyze an election
+with any amount of counties, votes, and candidates. Therefore it is perfect for the Colorado Election Commission to
+use in each and every election
+
+With that said, the code that is directed in the Module is inefficient and slow. Its use of cvs where pandas should be 
+used and array assignments based on the exact amount of candidates and counties in the this election alone is bad 
+coding. My code is much superior and produces the same results faster and with less lines.
