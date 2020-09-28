@@ -49,7 +49,6 @@ vote_percentage = [canidate_votes[canidate_options[0]] / total_votes * 100,
 county_percentage = [county_votes[county_options[0]] / total_votes * 100,
                      county_votes[county_options[1]] / total_votes * 100,
                      county_votes[county_options[2]] / total_votes * 100]
-print(county_percentage)
 
 # Winning Candidate and Winning Count Tracker
 winner_index = np.int(np.where(vote_percentage == np.amax(vote_percentage))[0])
